@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LOT - A developer working on Discord bots and open-source projects like KShips and Konnections">
+<meta property="og:title" content="LOT - About me">
+<meta property="og:description" content="A developer exploring coding, Discord bots, and open-source projects">
+<meta property="og:image" content="https://github.com/LOT-PL.png">
+<link rel="icon" href="https://github.com/LOT-PL.png" type="image/png">
+<title>LOT - About Me</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+body.bw-mode {
+    background-color: #fff;
+    color: #000;
+}
+#terminal {
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+body.bw-mode #terminal {
+    background: #fff;
+    border-color: #000;
+}
+#terminal-header {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    transition: background 0.3s, border-color 0.3s;
+}
+body.bw-mode #terminal-header {
+    background: linear-gradient(180deg, #e0e0e0 0%, #f0f0f0 100%);
+    border-bottom-color: #000;
+}
+#terminal-title {
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+body.bw-mode #terminal-title {
+    color: #000;
+}
+#terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.terminal-button:hover {
+    transform: scale(1.1);
+}
+body.bw-mode .terminal-button {
+    border-color: #000;
+}
+.terminal-button.close { background: #ff3333; border-color: #ff3333; }
+body.bw-mode .terminal-button.close { background: #000; border-color: #000; }
+.terminal-button.minimize { background: #666; border-color: #666; }
+body.bw-mode .terminal-button.minimize { background: #999; border-color: #999; }
+.terminal-button.maximize { background: #fff; }
+body.bw-mode .terminal-button.maximize { background: #000; }
+#status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #fff;
+}
+body.bw-mode #status-indicator {
+    color: #000;
+}
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff00;
+    animation: pulse 2s infinite;
+}
+body.bw-mode .status-dot {
+    background: #000;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+#terminal-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+#terminal-content::-webkit-scrollbar {
+    width: 10px;
+}
+#terminal-content::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+body.bw-mode #terminal-content::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+#terminal-content::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 5px;
+}
+body.bw-mode #terminal-content::-webkit-scrollbar-thumb {
+    background: #000;
+}
+#ascii-container {
+    white-space: pre;
+    line-height: 1.2em;
+    color: #fff;
+    font-size: clamp(10px, 1.5vw, 24px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-bottom: 30px;
+}
+body.bw-mode #ascii-container {
+    color: #000;
+}
+.red { 
+    color: #ff3333;
+}
+body.bw-mode .red {
+    color: #666;
+}
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #fff;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+body.bw-mode .cursor {
+    background: #000;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+.section {
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    margin-bottom: 30px;
+}
+body.bw-mode .section {
+    color: #000;
+}
+.section.visible {
+    opacity: 1;
+}
+.section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 8px;
+}
+body.bw-mode .section-title {
+    border-bottom-color: #000;
+}
+#prompt {
+    color: #fff;
+    margin-bottom: 15px;
+}
+body.bw-mode #prompt {
+    color: #000;
+}
+#profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+@media (min-width: 768px) {
+    #profile-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+#pfp-container {
+    flex-shrink: 0;
+}
+#pfp {
+    width: clamp(80px, 15vw, 150px);
+    height: clamp(80px, 15vw, 150px);
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    background: #0a0a0a;
+    display: block;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+body.bw-mode #pfp {
+    border-color: #000;
+    background: #f0f0f0;
+}
+#info-container {
+    flex: 1;
+}
+#info {
+    color: #fff;
+    font-size: clamp(12px, 1.2vw, 16px);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+body.bw-mode #info {
+    color: #000;
+}
+.info-line {
+    margin-bottom: 8px;
+}
+.prompt-symbol {
+    color: #ff3333;
+    margin-right: 8px;
+}
+body.bw-mode .prompt-symbol {
+    color: #666;
+}
+#tech-stack {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.tech-item {
+    padding: 8px 16px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+}
+body.bw-mode .tech-item {
+    border-color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+#social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+#social-icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+}
+body.bw-mode #social-icons a {
+    color: #000;
+    border-color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+#social-icons a:hover,
+#social-icons a:focus {
+    background: rgba(255, 51, 51, 0.15);
+    border-color: #ff3333;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+    transform: translateY(-2px);
+    outline: none;
+}
+body.bw-mode #social-icons a:hover,
+body.bw-mode #social-icons a:focus {
+    background: rgba(0, 0, 0, 0.15);
+    border-color: #000;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+#social-icons a img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+body.bw-mode #social-icons a img {
+    filter: brightness(0) invert(0);
+}
+.project-card {
+    padding: 15px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+}
+body.bw-mode .project-card {
+    border-color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+.project-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.project-desc {
+    font-size: 14px;
+    line-height: 1.6;
+}
+#command-input-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+}
+#command-prompt-symbol {
+    color: #ff3333;
+}
+body.bw-mode #command-prompt-symbol {
+    color: #666;
+}
+#command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    outline: none;
+    padding: 5px;
+}
+body.bw-mode #command-input {
+    color: #000;
+}
+#command-output {
+    margin-top: 15px;
+    white-space: pre-wrap;
+    font-size: 14px;
+}
+#guestbook-entries {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+.guestbook-entry {
+    padding: 10px;
+    border-left: 2px solid #ff3333;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.05);
+}
+body.bw-mode .guestbook-entry {
+    border-left-color: #666;
+    background: rgba(0, 0, 0, 0.05);
+}
+.guestbook-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.guestbook-message {
+    font-size: 13px;
+}
+.guestbook-time {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+#theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+body.bw-mode #theme-toggle {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+}
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+@media (max-width: 767px) {
+    #terminal {
+        height: 95vh;
+    }
+    #terminal-header {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+    #terminal-content {
+        padding: 15px;
+    }
+    #theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="terminal">
+    <div id="terminal-header">
+        <div id="terminal-title">
+            <div id="terminal-buttons">
+                <div class="terminal-button close" onclick="easterEgg('close')"></div>
+                <div class="terminal-button minimize" onclick="easterEgg('minimize')"></div>
+                <div class="terminal-button maximize" onclick="easterEgg('maximize')"></div>
+            </div>
+            <span>lot@portfolio:~$</span>
+        </div>
+        <div id="status-indicator">
+            <div class="status-dot"></div>
+            <span id="status-text">Online</span>
+        </div>
+    </div>
+    
+    <div id="terminal-content">
+        <pre id="ascii-container" role="img" aria-label="ASCII art banner"></pre>
+        
+        <div id="about-section" class="section">
+            <div id="prompt"></div>
+            <div id="profile-content">
+                <div id="pfp-container">
+                    <img id="pfp" src="https://github.com/LOT-PL.png" alt="LOT's GitHub profile picture" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%230a0a0a%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22%23fff%22 font-family=%22monospace%22%3ELOT%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div id="info-container">
+                    <div id="info"></div>
+                    <div id="tech-stack">
+                        <div class="tech-item">HTML/CSS/JS</div>
+                        <div class="tech-item">Node.js</div>
+                        <div class="tech-item">Discord.js</div>
+                    </div>
+                    <nav id="social-icons" aria-label="Social media links">
+                        <a href="https://github.com/LOT-PL" target="_blank" rel="noopener noreferrer" aria-label="Visit LOT's GitHub profile">
+                            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" loading="lazy" onerror="this.style.display='none'">
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://discord.gg/qgCvD9Waec" target="_blank" rel="noopener noreferrer" aria-label="Join LOT's Discord server">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="" loading="lazy" onerror="this.style.display='none'">
+                            <span>Discord Sever</span>
+                        </a>
+                        <a href="https://discord.com/users/965696343316238427" target="_blank" rel="noopener noreferrer" aria-label="LOT's Discord Profile">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="" loading="lazy" onerror="this.style.display='none'">
+                            <span>Discord Profile</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects-section" class="section">
+            <div class="section-title"># Projects</div>
+            <div class="project-card">
+                <div class="project-title">KShips</div>
+                <div class="project-desc">A battleship port to the Kindle</div>
+            </div>
+            <div class="project-card">
+                <div class="project-title">Konnections</div>
+                <div class="project-desc">A port of the NYT game "Connections" to the kindle!</div>
+            </div>
+        </div>
+
+        <div id="commits-section" class="section">
+            <div class="section-title"># Recent Activity</div>
+            <div id="commits-container">Loading recent commits...</div>
+        </div>
+
+        <div id="terminal-input-section" class="section">
+            <div class="section-title"># Terminal Commands</div>
+            <div>Type 'help' to see available commands</div>
+            <div id="command-input-container">
+                <span id="command-prompt-symbol">$</span>
+                <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off">
+            </div>
+            <div id="command-output"></div>
+        </div>
+
+        <div id="guestbook-section" class="section">
+            <div class="section-title"># Guest Book</div>
+            <div>Leave a message using: guestbook [name] [message]</div>
+            <div id="guestbook-entries"></div>
+        </div>
+    </div>
+</div>
+
+<button id="theme-toggle" aria-label="Toggle theme">◐</button>
+
+<audio id="type-sound" preload="auto">
+    <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=" type="audio/wav">
+</audio>
+
+<script>
+const asciiArt = [
+`  _    _ _   _____ _             _      ____ ________`,
+` | |  | (_) |_   _( )           | |    / __ \\__   __|`,
+` | |__| |_    | | |/ _ __ ___   | |   | |  | | | |   `,
+` |  __  | |   | |   | '_ \` _ \\  | |   | |  | | | |   `,
+` | |  | | |  _| |_  | | | | | | | |___| |__| | | |   `,
+` |_|  |_|_| |_____| |_| |_| |_| |______\\____/  |_|   `,
+`                                                     `,
+];
+
+const container = document.getElementById("ascii-container");
+const aboutSection = document.getElementById("about-section");
+const projectsSection = document.getElementById("projects-section");
+const commitsSection = document.getElementById("commits-section");
+const terminalInputSection = document.getElementById("terminal-input-section");
+const guestbookSection = document.getElementById("guestbook-section");
+const promptDiv = document.getElementById("prompt");
+const infoDiv = document.getElementById("info");
+const commandInput = document.getElementById("command-input");
+const commandOutput = document.getElementById("command-output");
+const guestbookEntries = document.getElementById("guestbook-entries");
+const themeToggle = document.getElementById("theme-toggle");
+const typeSound = document.getElementById("type-sound");
+
+let lineIndex = 0;
+let soundEnabled = true;
+const CHAR_DELAY = 10;
+const INITIAL_DELAY = 200;
+
+const commandText = "$ cat about.txt";
+const infoLines = [
+    "> Hi, I'm LOT!",
+    "> I am a developer who makes Discord bots,",
+    "> and projects for the kindle  such as KShips or Konnections.",
+    "> You can view them through my GitHub profile ",
+    "> and you can also join my discord server where I post updates about my projects."
+];
+
+const commands = {
+    help: "Available commands:\n  help - Show this message\n  ls - List sections\n  projects - Show projects\n  clear - Clear terminal\n  about - Show about info\n  guestbook [name] [message] - Leave a message\n  sudo rm -rf / - Don't try this\n  sound [on/off] - Toggle typing sounds\n  theme - Toggle B&W theme",
+    ls: "about.txt\nprojects/\ncontact.txt\nguestbook.txt",
+    projects: "KShips - Battleship port to the kindle\nKonnections - Port of NYT game 'Connections' to the kindle",
+    about: "LOT -  developer specializing in Discord bots and open-source projects",
+    clear: "CLEAR",
+    "sudo rm -rf /": "Nice try lmao",
+    sound: (args) => {
+        if (args[0] === 'on') {
+            soundEnabled = true;
+            return "Typing sounds enabled";
+        } else if (args[0] === 'off') {
+            soundEnabled = false;
+            return "Typing sounds disabled";
+        }
+        return "Usage: sound [on/off]";
+    },
+    theme: () => {
+        document.body.classList.toggle('bw-mode');
+        return "Theme toggled";
+    },
+    guestbook: (args) => {
+        if (args.length < 2) {
+            return "Usage: guestbook [name] [message]";
+        }
+        const name = args[0];
+        const message = args.slice(1).join(' ');
+        addGuestbookEntry(name, message);
+        return `Message added to guestbook!`;
+    }
+};
+
+function playTypeSound() {
+    if (soundEnabled && Math.random() > 0.7) {
+        typeSound.currentTime = 0;
+        typeSound.play().catch(() => {});
+    }
+}
+
+function typeCommand(callback) {
+    let i = 0;
+    const interval = setInterval(() => {
+        promptDiv.innerHTML += commandText[i];
+        playTypeSound();
+        i++;
+        if (i >= commandText.length) {
+            clearInterval(interval);
+            promptDiv.innerHTML += '<span class="cursor"></span>';
+            setTimeout(callback, 500);
+        }
+    }, CHAR_DELAY * 5);
+}
+
+function typeInfoLines(callback) {
+    let lineIdx = 0;
+    
+    function typeNextInfoLine() {
+        if (lineIdx < infoLines.length) {
+            let charIdx = 0;
+            const line = infoLines[lineIdx];
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'info-line';
+            infoDiv.appendChild(lineDiv);
+            
+            const interval = setInterval(() => {
+                let char = line[charIdx];
+                if (char === '>') {
+                    lineDiv.innerHTML += '<span class="prompt-symbol">></span>';
+                } else {
+                    lineDiv.innerHTML += char;
+                }
+                playTypeSound();
+                charIdx++;
+                if (charIdx >= line.length) {
+                    clearInterval(interval);
+                    lineIdx++;
+                    setTimeout(typeNextInfoLine, 100);
+                }
+            }, CHAR_DELAY);
+        } else {
+            callback();
+        }
+    }
+    
+    typeNextInfoLine();
+}
+
+function typeLine(line, callback) {
+    let i = 0;
+    const interval = setInterval(() => {
+        let char = line[i];
+        if (Math.random() > 0.5 && char !== " ") {
+            char = `<span style="color:#ff3333">${char}</span>`;
+        }
+        container.innerHTML += char;
+        playTypeSound();
+        i++;
+        if (i >= line.length) {
+            clearInterval(interval);
+            container.innerHTML += "\n";
+            callback();
+        }
+    }, CHAR_DELAY);
+}
+
+function typeNextLine() {
+    if (lineIndex < asciiArt.length) {
+        typeLine(asciiArt[lineIndex], () => {
+            lineIndex++;
+            typeNextLine();
+        });
+    } else {
+        finishAnimation();
+    }
+}
+
+function finishAnimation() {
+    setTimeout(() => {
+        aboutSection.classList.add('visible');
+        typeCommand(() => {
+            typeInfoLines(() => {
+                setTimeout(() => {
+                    projectsSection.classList.add('visible');
+                    loadGitHubActivity();
+                    setTimeout(() => {
+                        commitsSection.classList.add('visible');
+                        terminalInputSection.classList.add('visible');
+                        guestbookSection.classList.add('visible');
+                        loadGuestbook();
+                    }, 500);
+                }, 500);
+            });
+        });
+    }, 500);
+}
+
+async function loadGitHubActivity() {
+    const commitsContainer = document.getElementById('commits-container');
+    try {
+        const response = await fetch('https://api.github.com/users/LOT-PL/events');
+        const events = await response.json();
+        const pushEvents = events.filter(e => e.type === 'PushEvent').slice(0, 5);
+        
+        if (pushEvents.length === 0) {
+            commitsContainer.textContent = 'No recent activity found.';
+            return;
+        }
+        
+        commitsContainer.innerHTML = '';
+        pushEvents.forEach(event => {
+            const date = new Date(event.created_at).toLocaleDateString();
+            const repo = event.repo.name;
+            const commits = event.payload.commits.length;
+            const line = document.createElement('div');
+            line.textContent = `[${date}] ${commits} commit(s) to ${repo}`;
+            line.style.marginBottom = '5px';
+            commitsContainer.appendChild(line);
+        });
+    } catch (error) {
+        commitsContainer.textContent = 'Unable to load GitHub activity.';
+    }
+}
+
+function handleCommand(cmd) {
+    const trimmedCmd = cmd.trim();
+    
+    if (trimmedCmd === '') return;
+    
+    commandOutput.innerHTML += `$ ${trimmedCmd}\n`;
+    
+    if (trimmedCmd === 'sudo rm -rf /' || trimmedCmd === 'sudo rm -rf /*') {
+        commandOutput.innerHTML += 'Deleting all files...\n';
+        commandOutput.innerHTML += 'ERROR: Permission denied!\n';
+        commandOutput.innerHTML += 'Just kidding... Redirecting to the void...\n\n';
+        commandInput.value = '';
+        commandOutput.scrollTop = commandOutput.scrollHeight;
+        setTimeout(() => {
+            window.location.href = 'https://github.com/404';
+        }, 2000);
+        return;
+    }
+    
+    const parts = trimmedCmd.split(' ');
+    const command = parts[0].toLowerCase();
+    const args = parts.slice(1);
+    
+    if (command in commands) {
+        const result = typeof commands[command] === 'function' 
+            ? commands[command](args) 
+            : commands[command];
+        
+        if (result === 'CLEAR') {
+            commandOutput.innerHTML = '';
+        } else {
+            commandOutput.innerHTML += result + '\n\n';
+        }
+    } else {
+        commandOutput.innerHTML += `Command not found: ${command}\nType 'help' for available commands.\n\n`;
+    }
+    
+    commandInput.value = '';
+    commandOutput.scrollTop = commandOutput.scrollHeight;
+}
+
+function addGuestbookEntry(name, message) {
+    const entry = document.createElement('div');
+    entry.className = 'guestbook-entry';
+    entry.innerHTML = `
+        <div class="guestbook-name">${name}</div>
+        <div class="guestbook-message">${message}</div>
+        <div class="guestbook-time">${new Date().toLocaleString()}</div>
+    `;
+    guestbookEntries.insertBefore(entry, guestbookEntries.firstChild);
+    
+    const entries = JSON.parse(localStorage.getItem('guestbook') || '[]');
+    entries.unshift({ name, message, time: new Date().toISOString() });
+    localStorage.setItem('guestbook', JSON.stringify(entries.slice(0, 50)));
+}
+
+function loadGuestbook() {
+    const entries = JSON.parse(localStorage.getItem('guestbook') || '[]');
+    entries.forEach(entry => {
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'guestbook-entry';
+        entryDiv.innerHTML = `
+            <div class="guestbook-name">${entry.name}</div>
+            <div class="guestbook-message">${entry.message}</div>
+            <div class="guestbook-time">${new Date(entry.time).toLocaleString()}</div>
+        `;
+        guestbookEntries.appendChild(entryDiv);
+    });
+}
+
+function easterEgg(button) {
+    const messages = {
+        close: "Can't close this! It's embedded in the webpage! ",
+        minimize: "This terminal is already at peak performance! ",
+        maximize: "Already maximized! Can't get bigger than this! "
+    };
+    alert(messages[button]);
+}
+
+commandInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleCommand(commandInput.value);
+    }
+});
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('bw-mode');
+});
+
+setTimeout(() => {
+    container.style.opacity = 1;
+    typeNextLine();
+}, INITIAL_DELAY);
+</script>
+
+</body>
+</html>
