@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -455,75 +456,78 @@ body.bw-mode #theme-toggle {
             <span id="status-text">Online</span>
         </div>
     </div>
+
+```
+<div id="terminal-content">
+    <pre id="ascii-container" role="img" aria-label="ASCII art banner"></pre>
     
-    <div id="terminal-content">
-        <pre id="ascii-container" role="img" aria-label="ASCII art banner"></pre>
-        
-        <div id="about-section" class="section">
-            <div id="prompt"></div>
-            <div id="profile-content">
-                <div id="pfp-container">
-                    <img id="pfp" src="https://github.com/LOT-PL.png" alt="LOT's GitHub profile picture">
+    <div id="about-section" class="section">
+        <div id="prompt"></div>
+        <div id="profile-content">
+            <div id="pfp-container">
+                <img id="pfp" src="https://github.com/LOT-PL.png" alt="LOT's GitHub profile picture">
+            </div>
+            <div id="info-container">
+                <div id="info"></div>
+                <div id="tech-stack">
+                    <div class="tech-item">HTML/CSS/JS</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">Discord.js</div>
                 </div>
-                <div id="info-container">
-                    <div id="info"></div>
-                    <div id="tech-stack">
-                        <div class="tech-item">HTML/CSS/JS</div>
-                        <div class="tech-item">Node.js</div>
-                        <div class="tech-item">Discord.js</div>
-                    </div>
-                    <nav id="social-icons">
-                        <a href="https://github.com/LOT-PL" target="_blank">
-                            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://discord.gg/qgCvD9Waec" target="_blank">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
-                            <span>Discord Server</span>
-                        </a>
-                        <a href="https://discord.com/users/965696343316238427" target="_blank">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
-                            <span>Discord Profile</span>
-                        </a>
-                    </nav>
-                </div>
+                <nav id="social-icons">
+                    <a href="https://github.com/LOT-PL" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://discord.gg/qgCvD9Waec" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
+                        <span>Discord Server</span>
+                    </a>
+                    <a href="https://discord.com/users/965696343316238427" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
+                        <span>Discord Profile</span>
+                    </a>
+                </nav>
             </div>
-        </div>
-
-        <div id="projects-section" class="section">
-            <div class="section-title"># Projects</div>
-            <div class="project-card">
-                <div class="project-title">KShips</div>
-                <div class="project-desc">A battleship port to the Kindle</div>
-            </div>
-            <div class="project-card">
-                <div class="project-title">Konnections</div>
-                <div class="project-desc">A port of the NYT game "Connections" to the kindle!</div>
-            </div>
-        </div>
-
-        <div id="commits-section" class="section">
-            <div class="section-title"># Recent Activity</div>
-            <div id="commits-container">Loading recent commits...</div>
-        </div>
-
-        <div id="terminal-input-section" class="section">
-            <div class="section-title"># Terminal Commands</div>
-            <div>Type 'help' to see available commands</div>
-            <div id="command-input-container">
-                <span id="command-prompt-symbol">$</span>
-                <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off">
-            </div>
-            <div id="command-output"></div>
-        </div>
-
-        <div id="guestbook-section" class="section">
-            <div class="section-title"># Guest Book</div>
-            <div>Leave a message using: guestbook [name] [message]</div>
-            <div id="visitor-count" style="margin-top: 10px; opacity: 0.8; font-size: 13px;">Loading visitor count...</div>
-            <div id="guestbook-entries"></div>
         </div>
     </div>
+
+    <div id="projects-section" class="section">
+        <div class="section-title"># Projects</div>
+        <div class="project-card">
+            <div class="project-title">KShips</div>
+            <div class="project-desc">A battleship port to the Kindle</div>
+        </div>
+        <div class="project-card">
+            <div class="project-title">Konnections</div>
+            <div class="project-desc">A port of the NYT game "Connections" to the kindle!</div>
+        </div>
+    </div>
+
+    <div id="commits-section" class="section">
+        <div class="section-title"># Recent Activity</div>
+        <div id="commits-container">Loading recent commits...</div>
+    </div>
+
+    <div id="terminal-input-section" class="section">
+        <div class="section-title"># Terminal Commands</div>
+        <div>Type 'help' to see available commands</div>
+        <div id="command-input-container">
+            <span id="command-prompt-symbol">$</span>
+            <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off">
+        </div>
+        <div id="command-output"></div>
+    </div>
+
+    <div id="guestbook-section" class="section">
+        <div class="section-title"># Guest Book</div>
+        <div>Leave a message using: guestbook [name] [message]</div>
+        <div id="visitor-count" style="margin-top: 10px; opacity: 0.8; font-size: 13px;">Loading visitor count...</div>
+        <div id="guestbook-entries"></div>
+    </div>
+</div>
+```
+
 </div>
 
 <button id="theme-toggle">◐</button>
@@ -814,7 +818,6 @@ async function handleCommand(input) {
     commandOutput.scrollTop = commandOutput.scrollHeight;
 }
 
-// Online guestbook functions using persistent storage
 async function addGuestbookEntry(name, message) {
     try {
         const timestamp = new Date().toISOString();
@@ -828,7 +831,6 @@ async function addGuestbookEntry(name, message) {
         
         await window.storage.set(entryKey, JSON.stringify(entry), true);
         
-        // Display the new entry immediately
         displayGuestbookEntry(entry);
         
         return true;
@@ -868,7 +870,6 @@ async function loadGuestbook() {
         
         guestbookEntries.innerHTML = '';
         
-        // Load all entries
         const entries = [];
         for (const key of result.keys) {
             try {
@@ -882,10 +883,8 @@ async function loadGuestbook() {
             }
         }
         
-        // Sort by timestamp (newest first)
         entries.sort((a, b) => new Date(b.time) - new Date(a.time));
         
-        // Display entries
         entries.forEach(entry => {
             const entryDiv = document.createElement("div");
             entryDiv.className = "guestbook-entry";
@@ -982,10 +981,40 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-setTimeout(() => {
-    container.style.opacity = 1;
-    typeNextLine();
-}, 200);
+const isAprilFools = new Date().getMonth() === 3 && new Date().getDate() === 1;
+
+if (isAprilFools) {
+    setTimeout(() => {
+        container.style.opacity = 1;
+        const lines = [
+            {text: "lot@portfolio:~$ bash lotportfolio.sh", color: ""},
+            {text: "bash: lotportfolio.sh: No such file or directory", color: "#ff3333"}
+        ];
+        let i = 0;
+        function typeLine() {
+            if (i >= lines.length) return;
+            let j = 0;
+            const line = lines[i];
+            const lineEl = document.createElement("div");
+            if (line.color) lineEl.style.color = line.color;
+            container.appendChild(lineEl);
+            const iv = setInterval(() => {
+                lineEl.textContent += line.text[j++];
+                if (j >= line.text.length) {
+                    clearInterval(iv);
+                    i++;
+                    setTimeout(typeLine, 400);
+                }
+            }, 40);
+        }
+        typeLine();
+    }, 200);
+} else {
+    setTimeout(() => {
+        container.style.opacity = 1;
+        typeNextLine();
+    }, 200);
+}
 </script>
 
 </body>
