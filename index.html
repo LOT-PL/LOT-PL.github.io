@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -456,78 +455,75 @@ body.bw-mode #theme-toggle {
             <span id="status-text">Online</span>
         </div>
     </div>
-
-```
-<div id="terminal-content">
-    <pre id="ascii-container" role="img" aria-label="ASCII art banner"></pre>
     
-    <div id="about-section" class="section">
-        <div id="prompt"></div>
-        <div id="profile-content">
-            <div id="pfp-container">
-                <img id="pfp" src="https://github.com/LOT-PL.png" alt="LOT's GitHub profile picture">
-            </div>
-            <div id="info-container">
-                <div id="info"></div>
-                <div id="tech-stack">
-                    <div class="tech-item">HTML/CSS/JS</div>
-                    <div class="tech-item">Node.js</div>
-                    <div class="tech-item">Discord.js</div>
+    <div id="terminal-content">
+        <pre id="ascii-container" role="img" aria-label="ASCII art banner"></pre>
+        
+        <div id="about-section" class="section">
+            <div id="prompt"></div>
+            <div id="profile-content">
+                <div id="pfp-container">
+                    <img id="pfp" src="https://github.com/LOT-PL.png" alt="LOT's GitHub profile picture">
                 </div>
-                <nav id="social-icons">
-                    <a href="https://github.com/LOT-PL" target="_blank">
-                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://discord.gg/qgCvD9Waec" target="_blank">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
-                        <span>Discord Server</span>
-                    </a>
-                    <a href="https://discord.com/users/965696343316238427" target="_blank">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
-                        <span>Discord Profile</span>
-                    </a>
-                </nav>
+                <div id="info-container">
+                    <div id="info"></div>
+                    <div id="tech-stack">
+                        <div class="tech-item">HTML/CSS/JS</div>
+                        <div class="tech-item">Node.js</div>
+                        <div class="tech-item">Discord.js</div>
+                    </div>
+                    <nav id="social-icons">
+                        <a href="https://github.com/LOT-PL" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://discord.gg/qgCvD9Waec" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
+                            <span>Discord Server</span>
+                        </a>
+                        <a href="https://discord.com/users/965696343316238427" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="">
+                            <span>Discord Profile</span>
+                        </a>
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="projects-section" class="section">
-        <div class="section-title"># Projects</div>
-        <div class="project-card">
-            <div class="project-title">KShips</div>
-            <div class="project-desc">A battleship port to the Kindle</div>
+        <div id="projects-section" class="section">
+            <div class="section-title"># Projects</div>
+            <div class="project-card">
+                <div class="project-title">KShips</div>
+                <div class="project-desc">A battleship port to the Kindle</div>
+            </div>
+            <div class="project-card">
+                <div class="project-title">Konnections</div>
+                <div class="project-desc">A port of the NYT game "Connections" to the kindle!</div>
+            </div>
         </div>
-        <div class="project-card">
-            <div class="project-title">Konnections</div>
-            <div class="project-desc">A port of the NYT game "Connections" to the kindle!</div>
+
+        <div id="commits-section" class="section">
+            <div class="section-title"># Recent Activity</div>
+            <div id="commits-container">Loading recent commits...</div>
+        </div>
+
+        <div id="terminal-input-section" class="section">
+            <div class="section-title"># Terminal Commands</div>
+            <div>Type 'help' to see available commands</div>
+            <div id="command-input-container">
+                <span id="command-prompt-symbol">$</span>
+                <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off">
+            </div>
+            <div id="command-output"></div>
+        </div>
+
+        <div id="guestbook-section" class="section">
+            <div class="section-title"># Guest Book</div>
+            <div>Leave a message using: guestbook [name] [message]</div>
+            <div id="visitor-count" style="margin-top: 10px; opacity: 0.8; font-size: 13px;">Loading visitor count...</div>
+            <div id="guestbook-entries"></div>
         </div>
     </div>
-
-    <div id="commits-section" class="section">
-        <div class="section-title"># Recent Activity</div>
-        <div id="commits-container">Loading recent commits...</div>
-    </div>
-
-    <div id="terminal-input-section" class="section">
-        <div class="section-title"># Terminal Commands</div>
-        <div>Type 'help' to see available commands</div>
-        <div id="command-input-container">
-            <span id="command-prompt-symbol">$</span>
-            <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off">
-        </div>
-        <div id="command-output"></div>
-    </div>
-
-    <div id="guestbook-section" class="section">
-        <div class="section-title"># Guest Book</div>
-        <div>Leave a message using: guestbook [name] [message]</div>
-        <div id="visitor-count" style="margin-top: 10px; opacity: 0.8; font-size: 13px;">Loading visitor count...</div>
-        <div id="guestbook-entries"></div>
-    </div>
-</div>
-```
-
 </div>
 
 <button id="theme-toggle">◐</button>
@@ -987,12 +983,35 @@ if (isAprilFools) {
     setTimeout(() => {
         container.style.opacity = 1;
         const lines = [
-            {text: "lot@portfolio:~$ bash lotportfolio.sh", color: ""},
-            {text: "bash: lotportfolio.sh: No such file or directory", color: "#ff3333"}
+            {text: "lot@portfolio:~$ sudo rm -rf /", color: ""},
+            {text: "[sudo] password for lot: ", color: "#aaaaaa"},
+            {text: "rm: descending into '/'", color: "#ff3333"}
+        ];
+        const deletedPaths = [
+            "removed '/bin/bash'",
+            "removed '/bin/ls'",
+            "removed '/boot/vmlinuz'",
+            "removed '/etc/passwd'",
+            "removed '/etc/shadow'",
+            "removed '/home/lot/.bashrc'",
+            "removed '/home/lot/portfolio/index.html'",
+            "removed '/home/lot/portfolio/style.css'",
+            "removed '/lib/x86_64-linux-gnu/libc.so.6'",
+            "removed '/lib/x86_64-linux-gnu/libm.so.6'",
+            "removed '/root/.ssh/id_rsa'",
+            "removed '/sys/kernel/config'",
+            "removed '/usr/bin/python3'",
+            "removed '/usr/bin/node'",
+            "removed '/usr/lib/systemd/systemd'",
+            "removed '/var/log/syslog'",
+            "removed '/var/www/html/index.html'"
         ];
         let i = 0;
         function typeLine() {
-            if (i >= lines.length) return;
+            if (i >= lines.length) {
+                startDeletion();
+                return;
+            }
             let j = 0;
             const line = lines[i];
             const lineEl = document.createElement("div");
@@ -1003,12 +1022,51 @@ if (isAprilFools) {
                 if (j >= line.text.length) {
                     clearInterval(iv);
                     i++;
-                    setTimeout(typeLine, 400);
+                    setTimeout(typeLine, i === 2 ? 600 : 400);
                 }
-            }, 40);
+            }, i === 1 ? 80 : 40);
+        }
+        function startDeletion() {
+            let d = 0;
+            function deleteNext() {
+                if (d >= deletedPaths.length) {
+                    setTimeout(triggerBSOD, 800);
+                    return;
+                }
+                const el = document.createElement("div");
+                el.style.color = "#ff3333";
+                el.textContent = deletedPaths[d++];
+                container.appendChild(el);
+                container.scrollTop = container.scrollHeight;
+                setTimeout(deleteNext, 18);
+            }
+            deleteNext();
         }
         typeLine();
     }, 200);
+
+    function triggerBSOD() {
+        const bsod = document.createElement("div");
+        bsod.style.cssText = "position:fixed;inset:0;background:#0000aa;color:#fff;font-family:'Courier New',monospace;padding:60px 80px;z-index:9999;display:flex;flex-direction:column;justify-content:center;font-size:14px;line-height:2";
+        let count = 10;
+        bsod.innerHTML = `
+            <div style="font-size:20px;font-weight:bold;margin-bottom:24px">A problem has been detected and your portfolio has been shut down.</div>
+            <div>CRITICAL_PROCESS_DIED</div>
+            <div style="margin-top:24px;font-size:13px;color:#aaaaff">If this is the first time you've seen this error screen, restart the page.<br>If this screen appears again, follow these steps:</div>
+            <div style="margin-top:16px;font-size:13px">Check to make sure any new software is properly installed.<br>If this is a new installation, ask your developer if any updates are available.</div>
+            <div style="margin-top:32px" id="bsod-countdown">Restarting in 10...</div>
+        `;
+        document.body.appendChild(bsod);
+        const iv = setInterval(() => {
+            count--;
+            const el = document.getElementById("bsod-countdown");
+            if (el) el.textContent = "Restarting in " + count + "...";
+            if (count <= 0) {
+                clearInterval(iv);
+                bsod.remove();
+            }
+        }, 1000);
+    }
 } else {
     setTimeout(() => {
         container.style.opacity = 1;
